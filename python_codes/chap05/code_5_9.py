@@ -1,12 +1,6 @@
 INF = 1 << 60
 
 
-def chmin(a: int, b: int) -> int:
-    if a > b:
-        return b
-    return a
-
-
 def main() -> None:
     n = int(input())
     c = [[0] * (n + 1) for _ in range(n + 1)]
@@ -18,7 +12,7 @@ def main() -> None:
 
     for i in range(n + 1):
         for j in range(i):
-            dp[i] = chmin(dp[i], dp[j] + c[j][i])
+            dp[i] = min(dp[i], dp[j] + c[j][i])
 
     print(dp[n])
 
