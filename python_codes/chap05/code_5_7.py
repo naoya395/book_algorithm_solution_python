@@ -1,9 +1,3 @@
-def chmax(a: int, b: int) -> int:
-    if a < b:
-        return b
-    return a
-
-
 def main() -> None:
     n, w = map(int, input().split())
     weight = [0] * n
@@ -16,12 +10,12 @@ def main() -> None:
     for i in range(n):
         for weight_sum in range(w + 1):
             if weight_sum - weight[i] >= 0:
-                dp[i + 1][weight_sum] = chmax(
+                dp[i + 1][weight_sum] = max(
                     dp[i + 1][weight_sum],
                     dp[i][weight_sum - weight[i]] + value[i],
                 )
 
-            dp[i + 1][weight_sum] = chmax(dp[i + 1][weight_sum], dp[i][weight_sum])
+            dp[i + 1][weight_sum] = max(dp[i + 1][weight_sum], dp[i][weight_sum])
 
     print(dp[n][w])
 
