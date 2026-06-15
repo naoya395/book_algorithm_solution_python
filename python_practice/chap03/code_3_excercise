@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyPGgH1H8l9TmMm8/4/HDhOv",
+      "authorship_tag": "ABX9TyP7OxMoG2mGLHjIVAMCa0j+",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -27,13 +27,162 @@
       ]
     },
     {
-      "cell_type": "code",
-      "execution_count": null,
+      "cell_type": "markdown",
+      "source": [
+        "##3.7　たくさんの数字\n",
+        "各桁の値が１以上９以下の数値のみである整数とみなせるような，長さ N の文字列 S が与えられます．この文字列の中で，文字と文字の間のうちのいくつかの場所に「＋」を入れることができます．\n",
+        "１つも入れなくてもかまいませんが，「＋」が連続してはいけません．このようにしてできるすべての文字列を数値とみなして，総和を計算する O(2N) のアルゴリズムを設計してください．たとえば S＝\"125\" のときは，125, 1＋25 (＝26), 12＋5 (＝17), 1＋2＋5 (＝8) の総和をとって176となります．\n",
+        "\n",
+        "大槻兼資. 問題解決力を鍛える！アルゴリズムとデータ構造 (ＫＳ情報科学専門書) (p.85). 講談社. Kindle 版."
+      ],
       "metadata": {
-        "id": "sUETqzHsqGUe"
+        "id": "B2YMmLSTqxD7"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "### 大事なところを隠すバージョン"
+      ],
+      "metadata": {
+        "id": "g0Qgc-Oprz7O"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def total_sum_with_plus(S: str) -> int:\n",
+        "    N = len(S)\n",
+        "    answer = 0\n",
+        "\n",
+        "    for bit in range(1 << (N - 1)):\n",
+        "        current = 0\n",
+        "\n",
+        "        for i in range(___):\n",
+        "            current = current * 10 + int(___)\n",
+        "\n",
+        "            # 最後の文字に到達した場合、または i 番目の後ろに + を入れる場合\n",
+        "            if i == ____ or ___:\n",
+        "                answer += current\n",
+        "                current = 0\n",
+        "\n",
+        "    return answer\n",
+        "\n",
+        "\n",
+        "S = input().strip()\n",
+        "print(total_sum_with_plus(S))"
+      ],
+      "metadata": {
+        "id": "3FWOYpQFr3Mr"
       },
-      "outputs": [],
-      "source": []
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "### 重要部分消したバージョン"
+      ],
+      "metadata": {
+        "id": "HSKFVpMxtYVr"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def total_sum_with_plus(S: str) -> int:\n",
+        "    N = len(S)\n",
+        "    answer = 0\n",
+        "\n",
+        "    # ここに，入力された数字についての和を求める式を書く\n",
+        "\n",
+        "\n",
+        "\n",
+        "S = input().strip()\n",
+        "print(total_sum_with_plus(S))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "R2Mb9MfgteJh",
+        "outputId": "9a85fcc1-5ebe-49eb-e8c0-4e11c4379f3f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "12\n",
+            "13 13\n",
+            "14 1\n",
+            "16 2\n",
+            "16\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "### 答え"
+      ],
+      "metadata": {
+        "id": "3XuajBk8rpCp"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def total_sum_with_plus(S: str) -> int:\n",
+        "    N = len(S)\n",
+        "    answer = 0\n",
+        "\n",
+        "    for bit in range(1 << (N - 1)):\n",
+        "        current = 0\n",
+        "\n",
+        "        for i in range(N):\n",
+        "            current = current * 10 + int(S[i])\n",
+        "\n",
+        "            # 最後の文字に到達した場合、または i 番目の後ろに + を入れる場合\n",
+        "            if i == N - 1 or bit & (1 << i):\n",
+        "                answer += current\n",
+        "                current = 0\n",
+        "\n",
+        "    return answer\n",
+        "\n",
+        "\n",
+        "S = input().strip()\n",
+        "print(total_sum_with_plus(S))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "iz9idJQvq3yy",
+        "outputId": "287843ab-7777-4476-8c7b-a4084fa47639"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "12\n",
+            "15\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "B4BOmrw6q4Yi"
+      },
+      "execution_count": null,
+      "outputs": []
     }
   ]
 }
